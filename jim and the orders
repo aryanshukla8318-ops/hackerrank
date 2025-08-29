@@ -1,0 +1,8 @@
+def jimOrders(orders):
+    serve_times = []
+    for i, (order_time, prep_time) in enumerate(orders, start=1):
+        serve_time = order_time + prep_time
+        serve_times.append((serve_time, i))
+    serve_times.sort()
+    result = [customer for _, customer in serve_times]
+    return result
