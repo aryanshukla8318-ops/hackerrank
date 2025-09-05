@@ -1,0 +1,22 @@
+def solve(dates):
+    def is_valid_in_base(num_str, base):
+        return all(int(d) < base for d in num_str)
+    
+    def convert_to_decimal(num_str, base):
+        return int(num_str, base)
+    
+    value_map = {}
+    
+    for m, d in dates:
+        if m == 1: 
+            continue
+        d_str = str(d)
+        if is_valid_in_base(d_str, m):
+            val = convert_to_decimal(d_str, m)
+            value_map[val] = value_map.get(val, 0) + 1
+    
+    jokes = 0
+    for freq in value_map.values():
+        jokes += freq * (freq - 1) // 2
+    
+    return jokes
