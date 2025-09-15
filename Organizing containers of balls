@@ -1,0 +1,4 @@
+def organizingContainers(container):
+    container_sums = [sum(row) for row in container]
+    type_sums = [sum(col) for col in zip(*container)]
+    return "Possible" if sorted(container_sums) == sorted(type_sums) else "Impossible"
