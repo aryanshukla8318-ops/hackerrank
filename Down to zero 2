@@ -1,0 +1,21 @@
+def downToZero(n):
+    visited = [False] * (n + 1)
+    q = deque([(n, 0)])
+    visited[n] = True
+
+    while q:
+        num, steps = q.popleft()
+
+        if num == 0:
+            return steps
+
+        if not visited[num - 1]:
+            visited[num - 1] = True
+            q.append((num - 1, steps + 1))
+
+        for i in range(2, int(num ** 0.5) + 1):
+            if num % i == 0:
+                nxt = max(i, num // i)
+                if not visited[nxt]:
+                    visited[nxt] = True
+                    q.append((nxt, steps + 1))
