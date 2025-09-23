@@ -1,0 +1,18 @@
+def minimumLoss(price):
+    # Create list of (price, original_index)
+    arr = [(p, i) for i, p in enumerate(price)]
+    # Sort by price descending
+    arr.sort(key=lambda x: x[0], reverse=True)
+
+    min_loss = 10**30  # large initial value
+    # Check adjacent pairs in sorted-by-price-desc list
+    for k in range(len(arr) - 1):
+        p_high, idx_high = arr[k]
+        p_low, idx_low = arr[k + 1]
+        # valid sale only if higher price occurs earlier in time (idx_high < idx_low)
+        if idx_high < idx_low:
+            loss = p_high - p_low
+            if 0 < loss < min_loss:
+                min_loss = loss
+
+    return int(min_loss)
