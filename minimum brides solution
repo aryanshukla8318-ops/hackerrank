@@ -1,0 +1,14 @@
+def minimumBribes(q):
+    for i, person in enumerate(q):
+        if person - (i + 1) > 2:
+            print("Too chaotic")
+            return
+    bribes = 0
+    n = len(q)
+    for i in range(n):
+        person = q[i]
+        start = max(0, person - 2)
+        for j in range(start, i):
+            if q[j] > person:
+                bribes += 1
+    print(bribes)
