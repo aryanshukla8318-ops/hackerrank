@@ -1,0 +1,13 @@
+def encryption(s):
+    s = s.replace(" ", "")
+    n = len(s)
+    st = []
+    columns = math.ceil(math.sqrt(n))
+    
+    for i in range(columns):
+        temp = ''
+        for j in range(i, n, columns):
+            temp += s[j]
+        st.append(temp)
+    
+    return " ".join(st)
