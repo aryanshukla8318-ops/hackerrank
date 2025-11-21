@@ -1,0 +1,25 @@
+def happyLadybugs(b):
+    # Write your code here
+    temp = {}
+    under_score_present = False
+    already_happy = True
+    n = len(b)
+    for i in range(n):
+        if b[i] == "_":
+            under_score_present = True
+            continue
+        if already_happy:
+            happy_left = True if i > 0 and b[i] == b[i-1] else False
+            happy_right = True if i < (n-1) and b[i] == b[i+1] else False
+            if not (happy_left or happy_right):
+                already_happy = False
+        if temp.get(b[i]):
+            temp[b[i]] += 1
+        else:
+            temp[b[i]] = 1
+   
+    for i in temp:
+        if temp[i] == 1:
+            return "NO"
+            
+    return "YES" if under_score_present or already_happy  else "NO"
